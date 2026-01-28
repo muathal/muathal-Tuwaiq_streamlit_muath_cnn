@@ -12,6 +12,7 @@ class CNN_TUMOR(nn.Module):
         self.conv2 = nn.Conv2d(8, 16, 3, padding=1)
         self.conv3 = nn.Conv2d(16, 32, 3, padding=1)
         self.conv4 = nn.Conv2d(32, 64, 3, padding=1)
+        self.conv5 = nn.Conv2d(64,128, kernel_size=3, padding=1)
         self.pool = nn.MaxPool2d(2, 2)
 
         with torch.no_grad():
@@ -27,6 +28,7 @@ class CNN_TUMOR(nn.Module):
         x = self.pool(F.relu(self.conv2(x)))
         x = self.pool(F.relu(self.conv3(x)))
         x = self.pool(F.relu(self.conv4(x)))
+        x = self.pool(F.relu(self.conv5(x)))
         return x
 
     def forward(self, x):
